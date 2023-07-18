@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import CustomerModel from 'src/app/models/CustomerModel';
-import TaskModel from 'src/app/models/TaskModel';
+import CustomerModel from 'src/app/models/customer-model';
+import TaskModel from 'src/app/models/task-model';
 import { DataService } from 'src/app/services/data.service';
 import { NotifyService } from 'src/app/services/notify.service';
 

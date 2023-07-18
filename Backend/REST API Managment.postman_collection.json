@@ -46,6 +46,27 @@
 			"response": []
 		},
 		{
+			"name": "Get one task",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Add new task",
 			"request": {
 				"method": "POST",
@@ -69,6 +90,36 @@
 					"path": [
 						"api",
 						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit task",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"taskId\": 1,\r\n        \"description\": \"Send a fax to the customer and call him \",\r\n        \"date\": \"2023-05-13T21:00:00.000Z\",\r\n        \"customerId\": 4\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"tasks",
+						"1"
 					]
 				}
 			},

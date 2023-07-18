@@ -4,11 +4,13 @@ import { HomeComponent } from './components/home-area/home/home.component';
 import { ListComponent } from './components/data-area/list/list.component';
 import { InsertComponent } from './components/data-area/insert/insert.component';
 import { PageNotFoundComponent } from './components/layout-area/page-not-found/page-not-found.component';
+import { EditComponent } from './components/data-area/edit/edit.component';
 
 const routes: Routes = [
     { path: "home", component: HomeComponent },
     { path: "list", component: ListComponent },
     { path: "insert", component: InsertComponent },
+    { path: "edit", component: EditComponent },
     { path: "", redirectTo: "/home", pathMatch: "full" },
     { path: "**", component: PageNotFoundComponent }
 ];

@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home-area/home/home.component';
 import { ListComponent } from './components/data-area/list/list.component';
 import { InsertComponent } from './components/data-area/insert/insert.component';
 import { PageNotFoundComponent } from './components/layout-area/page-not-found/page-not-found.component';
+import { EditComponent } from './components/data-area/edit/edit.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { PageNotFoundComponent } from './components/layout-area/page-not-found/p
         HomeComponent,
         ListComponent,
         InsertComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        EditComponent
     ],
     imports: [
         BrowserModule,

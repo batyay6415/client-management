@@ -13,4 +13,4 @@ server.use("/api", dataRoutes);
 server.use(routeNotFound);
 server.use(catchAll);
 
-server.listen(appConfig.port, () => console.log("Listening on http://localhost:" + appConfig.port));
+server.listen(process.env.PORT, () => console.log(`Listening on http://localhost:${process.env.PORT}`));

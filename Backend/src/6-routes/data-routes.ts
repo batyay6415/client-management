@@ -24,6 +24,16 @@ router.get("/tasks", async (request: Request, response: Response, next: NextFunc
     }
 });
 
+router.get("/tasks/:id([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        const id = +request.params.id;
+        const task = await dataService.getOneTask(id)
+        response.json(task);
+    }
+    catch(err: any) {
+        next(err);
+    }
+});
 
 router.post("/tasks", async (request: Request, response: Response, next: NextFunction) => {
     try {
@@ -36,7 +46,19 @@ router.post("/tasks", async (request: Request, response: Response, next: NextFun
     }
 });
 
-router.delete("/tasks/:id", async (request: Request, response: Response, next: NextFunction) => {
+router.patch("/tasks/:id([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        request.body.taskId = +request.params.id
+        const task = new TaskModel(request.body);
+        const editTask = await dataService.editTask(task);
+        response.json(editTask);
+    }
+    catch(err: any) {
+        next(err);
+    }
+});
+
+router.delete("/tasks/:id([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const id = +request.params.id;
         await dataService.deleteTask(id);

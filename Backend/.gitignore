@@ -1,2 +1,13 @@
-# Node
+# Ignore node_modules directory
 node_modules/
+
+# Ignore any local development files or environment configurations
+.env
+.env.*
+
+# Ignore log files
+*.log
+
+# Ignore Docker artifacts
+docker-compose.yml
+Dockerfile

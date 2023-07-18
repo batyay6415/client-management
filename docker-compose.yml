@@ -1,0 +1,103 @@
+# List of all services (containers): - usually in our full-stack is three parts : data-base, back-end,front-end
+services: 
+# ------------------------------------------------------------------------------------------------
+  # 1. managment database service:
+  managment-database-service:
+
+    # Database image name: 
+    image: batyaye6415/managment-database-image:1.0
+
+    # Build image from Dockerfile location:
+    build: ./Database
+
+    # Container name: 
+    container_name: managment-database-container
+
+    # Port binding: - bacause that mysql xammp run on port 3306
+    ports:
+      - 3306:3306
+
+    # Restart policy - on crash - what do we need to do?
+    restart: unless-stopped
+    
+    # Evironment Variables used inside our database:
+    environment:
+      - MYSQL_HOST=localhost # Internally for the container.
+      - MYSQL_DATABASE=managment
+      - MYSQL_USER=Batya
+      - MYSQL_PASSWORD=beautiful
+      - MYSQL_ROOT_PASSWORD=beautiful # Needed by MySQL image.
+
+    # Named Volume for persisting the data:
+    volumes: 
+      - managment-db:/var/lib/mysql
+
+  # --------------------------------------------------------------------
+
+  # 2. Backend REST API service:
+  managment-backend-service: 
+
+    # Image name to create:
+    image: batyaye6415/managment-backend-image:1.0
+
+    # Build image from following Dockerfile location: 
+    build: ./Backend
+
+    # Container name to create:
+    container_name: managment-backend-container
+
+    # Port binding (host-port:container-port)
+    ports:
+      - 4001:4000
+
+    # Restart policy - on crash - what do we need to do?
+    restart: unless-stopped
+
+    # Evironment Variables used inside our REST API:
+    environment:
+      - PORT=4000
+      - MYSQL_HOST=managment-database-service # Database service name is the host name.
+      - MYSQL_DATABASE=managment
+      - MYSQL_USER=Batya
+      - MYSQL_PASSWORD=beautiful
+
+    # Host volume for Hot-Reloading:- the file of backend that connect 
+    volumes:
+      - ./Backend:/app
+
+    depends_on:
+      - managment-database-service  
+
+  # --------------------------------------------------------------------
+
+  # 3. Frontend service:
+  managment-frontend-service:
+
+    # Frontend image: 
+    image: batyaye6415/managment-frontend-image:1.0
+
+    # Build image: 
+    build: ./Frontend
+
+    # Container: 
+    container_name: managment-frontend-container
+
+    # Port binding: 
+    ports: 
+      - 3000:3000
+
+    # Restart policy - on crash - what do we need to do?
+    restart: unless-stopped
+
+    # Host Volume for hot reloading: 
+    volumes:
+      - ./Frontend:/app
+
+    depends_on:
+      - managment-backend-service
+      
+  # --------------------------------------------------------------------
+
+# List all your Named Volumes here:
+volumes:
+  managment-db:

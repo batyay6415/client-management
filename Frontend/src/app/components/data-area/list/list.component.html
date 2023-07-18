@@ -2,12 +2,13 @@
     <table>
         <thead>
             <tr>
-                <th>Task #</th>
+                <th>Task</th>
                 <th>Description</th>
                 <th>Date</th>
                 <th>Customer-name</th>
                 <th>Done?</th>
                 <th>Delete?</th>
+                <th>Edit?</th>
             </tr>
         </thead>
         <tbody>
@@ -20,9 +21,11 @@
                     <input type="checkbox" [(ngModel)]="t.isDone">
                   </label></td>
                 <td><button (click)="deleteTask(t.taskId)">Delete</button></td>
+                <!-- <td><button (click)="editTask(t)">Edit</button></td> -->
+                <!-- <li><a routerLink="/second-component" routerLinkActive="active"></a> -->
+                <td><a routerLink="/edit">Edit</a></td>
             </tr>
         </tbody>
     </table>
-
 
 </div>
